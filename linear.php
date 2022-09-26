@@ -9,10 +9,16 @@ var_dump(
 );
 var_dump(linearSearch(1001, $array));
 
-function linearSearch(mixed $needle, array $haystack): string|null
+function linearSearch(mixed $needle, array $haystack, bool $strict = true): string|null
 {
     foreach ($haystack as $key => $value) {
-        if ($value === $needle) {
+        if ($strict) {
+            if ($value === $needle) {
+                return $key;
+            }
+            continue;
+        }
+        if ($value == $needle) {
             return $key;
         }
     }
